@@ -1,11 +1,16 @@
-// src/services/userService.ts
-// ⚠️ Codice volutamente problematico per il Lab 2 (PR review Copilot).
-// Difetti: query non parametrizzata (SQL injection) + accesso senza null check.
-type Row = { name: string };
-declare const db: { execute(q: string): { rows: Row[] } };
+import { ValidationError } from "../types";
 
-export function getUser(id: string) {
-  const query = `SELECT * FROM users WHERE id = '${id}'`;
-  const result = db.execute(query);
-  return result.rows[0].name; // possibile null/undefined
+type UserRow = { name: string };
+
+export interface UserDatabase {
+  execute(query: string, params: readonly string[]): { rows: UserRow[] };
+}
+
+export function getUser(id: string, db: UserDatabase): string | null {
+  if (typeof id !== "string" || id.trim().length === 0) {
+    throw new ValidationError("id obbligatorio e non vuoto");
+  }
+
+  const result = db.execute("SELECT name FROM users WHERE id = ?", [id]);
+  return result.rows[0]?.name ?? null;
 }
