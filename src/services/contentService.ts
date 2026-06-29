@@ -8,6 +8,7 @@ import type {
 } from "../types";
 import { validateContentInput } from "../utils/validation";
 
+// aggiunto un commento per spiegare che ContentService è la logica di business del catalogo e dipende da ContentRepository, che può essere iniettato per i test.
 /**
  * ContentService — logica di business del catalogo.
  * Dipende da ContentRepository (iniettabile): nei test puoi passare un mock
