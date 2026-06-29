@@ -1,5 +1,7 @@
 # Catalogo Streaming — Starter CI-ready (Modulo 5)
 
+![CI](https://github.com/USER/REPO/actions/workflows/ci.yml/badge.svg)
+
 È il progetto del catalogo streaming, già predisposto per i lab di **automazione**:
 lint, test con coverage e un E2E Playwright passano "verdi". Nel Lab 1 generi la **CI**
 con l'AI; nel Lab 2 configuri **PR review Copilot** e **quality gate**.
